@@ -1,1 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haider Ali Khan | Premium Shopify Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global & Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
 
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #121216;
+            --accent-gold: #8a7343;
+            --accent-gold-hover: #bfa571;
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1aa;
+            --border-color: #27272a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-color: inherit;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 12, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px 20px;
+            background: radial-gradient(circle at top right, rgba(138, 115, 67, 0.1), transparent 50%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-tagline {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border: 1px solid var(--accent-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-hover);
+            border-color: var(--accent-gold-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Section Global Settings */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 240px;
+            background-color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-card:hover .portfolio-img img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-info {
+            padding: 25px;
+        }
+
+        .portfolio-category {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .portfolio-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Experience & Education Layout */
+        .history-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .history-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .timeline-card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-gold);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .timeline-date {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-org {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .timeline-body {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-body ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        
+        .timeline-body ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-dark), #121216);
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">HAIDER<span>ALI</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Stores Portfolio</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about" class="hero">
+        <div class="hero-content">
+            <div class="hero-tagline">UI/UX Designer & Shopify Developer</div>
+            <h1 class="hero-title">Crafting Premium, High-Converting Shopify Storefronts</h1>
+            <p class="hero-desc">
+                With a specialized focus on web store development, I engineer high-end, responsive Shopify e-commerce solutions that seamlessly align with modern brand aesthetics. I prioritize mobile responsiveness, layout hierarchy, and user experiences to build scalable digital storefronts tailored to win competitive digital marketplaces.
+            </p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="btn btn-primary">View E-commerce Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 class="section-title">Featured E-Commerce Deployments</h2>
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="WATCHES.png" alt="Chronos & Co. Premium Watch Store Layout">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-category">Luxury Retail</div>
+                    <div class="portfolio-item-title">Chronos & Co.</div>
+                    <p class="portfolio-desc">A deep, moody dark-themed Shopify setup dedicated to luxury watches. Features crisp visual typography, streamlined layout mechanics, and elegant asset placement.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="SHOES.png" alt="Urban Treads Interactive Shoe Store Layout">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-category">Streetwear & Apparel</div>
+                    <div class="portfolio-item-title">Urban Treads</div>
+                    <p class="portfolio-desc">Dynamic, vibrant, and urban-optimized footwear digital storefront. Engineered for mobile-first speed, fluid animations, and high product card conversion metrics.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="COSMETICS.png" alt="Aura Cosmetics Clean Store Layout">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-category">Beauty & Health</div>
+                    <div class="portfolio-item-title">Aura Cosmetics</div>
+                    <p class="portfolio-desc">A soft, high-end clean interface designed for premium skincare and cosmetics. Uses balanced whitespace structure and clear imagery sections.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img">
+                    <img src="SCENTS.png" alt="Essence Luxury Perfume Store Layout">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-category">Luxury Fragrances</div>
+                    <div class="portfolio-item-title">Essence Fragrances</div>
+                    <p class="portfolio-desc">High-contrast minimalistic layout built specifically to display luxury perfumes, accentuating bottle geometry and professional branding narratives.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">History & Qualifications</h2>
+        <div class="history-container">
+            
+            <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent-gold);"><i class="fas fa-briefcase"></i> Work History</h3>
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="timeline-date">July 2023 – February 2024</div>
+                        <div class="timeline-title">WordPress Web Developer</div>
+                        <div class="timeline-org">Freelancer.com</div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Developed dynamic, responsive websites prioritizing smooth navigational structures and custom web architecture.</li>
+                                <li>Blended advanced back-end web functionality with highly aesthetic UI layouts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-card">
+                        <div class="timeline-date">April 2021 – September 2023</div>
+                        <div class="timeline-title">Graphics & Store UI Designer</div>
+                        <div class="timeline-org">Fiverr</div>
+                        <div class="timeline-body">
+                            <ul>
+                                <li>Created custom digital design assets and user interface components to streamline store layout conversions.</li>
+                                <li>Optimized visual elements across home and landing pages to secure seamless brand representations.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent-gold);"><i class="fas fa-graduation-cap"></i> Education</h3>
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="timeline-date">Enrolled 2025</div>
+                        <div class="timeline-title">Bachelor of Science (BS)</div>
+                        <div class="timeline-org">Allama Iqbal Open University (AIOU)</div>
+                        <div class="timeline-body">
+                            Deepening core domain tech understanding, network logic systems, data-driven security models, and computing engineering paradigms.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Let's Build Something Exceptional</h2>
+            <p style="color: var(--text-muted);">Ready to scale your store conversions or looking to build a high-end Shopify platform from scratch?</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>h4haider2007@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/haider4140" target="_blank">linkedin.com/in/haider4140</a>
+                </div>
+            </div>
+            
+            <a href="mailto:h4haider2007@gmail.com" class="btn btn-primary">Send Direct Email</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Haider Ali Khan. All Rights Reserved. Tailored for Professional Shopify and Web Development Solutions.</p>
+    </footer>
+
+</body>
+</html>
